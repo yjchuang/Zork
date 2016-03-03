@@ -7,7 +7,7 @@ public class Zork {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Random rnd = new Random();
-		int secret = rnd.nextInt(4);
+		int secret = 1;//if secret is 0, secret room is found, thus we will make it nonzero initially
 		int roomsEntered = 0;
 		int[] entryFlag = new int[8];
 		for(int i = 0; i < 8; i++)
@@ -162,6 +162,7 @@ public class Zork {
 	public static void parlor(Scanner sc, int[] entryFlag, int secret) 
 	{
 		entryFlag[6] = 1;
+		Random rnd = new Random();
 		
 		System.out.println("You are standing in the parlor.");
 		System.out.println("You see a treasure chest.");
@@ -175,6 +176,10 @@ public class Zork {
 		}
 		else
 		{
+			if(secret != 0)
+			{
+				secret = rnd.nextInt(4);
+			}
 			vault(sc, entryFlag, secret);
 		}
 	}
